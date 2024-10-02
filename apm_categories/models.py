@@ -75,7 +75,7 @@ class ASHPenserSubCategories(models.Model):
     ashpenser_data = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="subcategories")
     category_data = models.ForeignKey(ASHPenserCategories, on_delete=models.CASCADE, related_name="subcategories")
     subcategory_name = models.CharField(max_length=100, null=True, blank=True)
-    subcategory_type = models.CharField(max_length=100, null=True, blank=True)
+    subcategory_type = models.CharField(max_length=100, choices=CATEGORY_TYPE, null=True, blank=True)
     description = models.TextField(null=True, blank=True)
 
     def __str__(self):
@@ -112,7 +112,7 @@ class ASHPenserSubCategoriesFilter(django_filters.FilterSet):
 
     class Meta:
         model = ASHPenserSubCategories
-        fields = ["subcategory_name",]
+        fields = ["subcategory_name", "subcategory_type",]
 
 
 class ASHPenserPaymentMethod(models.Model):
